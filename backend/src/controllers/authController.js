@@ -7,9 +7,6 @@ const generateToken = (id) => {
   });
 };
 
-// @desc    Register a new user
-// @route   POST /api/auth/register
-// @access  Public
 export const register = async (req, res, next) => {
   try {
     const { name, email, password, monthlyBudget } = req.body;
@@ -30,6 +27,7 @@ export const register = async (req, res, next) => {
       email: cleanEmail,
       password,
       monthlyBudget: monthlyBudget ? Number(monthlyBudget) : 30000,
+      lastLogin: new Date(),
     });
 
     res.status(201).json({
@@ -37,6 +35,7 @@ export const register = async (req, res, next) => {
       name: user.name,
       email: user.email,
       monthlyBudget: user.monthlyBudget,
+      lastLogin: user.lastLogin,
       token: generateToken(user._id),
     });
   } catch (error) {
@@ -44,9 +43,6 @@ export const register = async (req, res, next) => {
   }
 };
 
-// @desc    Auth user & get token (Login)
-// @route   POST /api/auth/login
-// @access  Public
 export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -67,21 +63,25 @@ export const login = async (req, res, next) => {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
+    const updatedUser = await User.findByIdAndUpdate(
+      user._id,
+      { $set: { lastLogin: new Date() } },
+      { new: true }
+    );
+
     res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      monthlyBudget: user.monthlyBudget,
-      token: generateToken(user._id),
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      monthlyBudget: updatedUser.monthlyBudget,
+      lastLogin: updatedUser.lastLogin,
+      token: generateToken(updatedUser._id),
     });
   } catch (error) {
     next(error);
   }
 };
 
-// @desc    Update user's monthly budget
-// @route   PUT /api/auth/budget
-// @access  Private
 export const updateBudget = async (req, res, next) => {
   try {
     const { monthlyBudget } = req.body;
