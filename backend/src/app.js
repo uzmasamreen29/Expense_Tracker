@@ -11,7 +11,7 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://expense-tracker-kz3zmhuu0-uzmasamreen859-4083s-projects.vercel.app',
+    'https://expense-tracker-omega-beryl-59.vercel.app',
     /\.vercel\.app$/ // Allows preview and production Vercel subdomains
   ],
   credentials: true
