@@ -8,7 +8,14 @@ import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 const app = express();
 
 // Global Middlewares
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://expense-tracker-kz3zmhuu0-uzmasamreen859-4083s-projects.vercel.app',
+    /\.vercel\.app$/ // Allows preview and production Vercel subdomains
+  ],
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
