@@ -58,15 +58,14 @@ Start the frontend Vite server:
 npm run dev
 # Application running at http://localhost:5173
 
-| Method | Endpoint | Description |
-| --- | --- | --- |
-| `POST` | `/api/auth/register` | Register new clinic administrator account |
-| `POST` | `/api/auth/login` | Authenticate and return JWT token |
-| `GET` | `/api/expenses` | Retrieve all facility procurement ledger records |
-| `POST` | `/api/expenses` | Record a verified clinical expenditure |
-| `DELETE` | `/api/expenses/:id` | Remove an expenditure record |
-| `GET` | `/api/categories` | Fetch all clinical cost-center departments |
-| `POST` | `/api/categories` | Add a new clinical cost-center |
+Method    Endpoint             Description
+POST     /api/auth/register    Register new clinic administrator account
+POST     /api/auth/login        Authenticate and return JWT token
+GET      /api/expenses         Retrieve all facility procurement ledger records
+POST    /api/expenses         Record a verified clinical expenditure
+DELETE  /api/expenses/:id       Remove an expenditure record
+GET     /api/categories     Fetch all clinical cost-center departments
+POST      /api/categories   Add a new clinical cost-center
 
 🧪 OCR Demonstration Samples
 To test the automated invoice processing pipeline, navigate to the Record Expense modal and upload sample invoice images containing standardized fields:
