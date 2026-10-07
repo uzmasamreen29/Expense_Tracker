@@ -38,14 +38,42 @@ A full-stack, enterprise-grade healthcare financial tracking and compliance moni
 cd backend
 npm install
 
-Create a .env file in the backend/ directory:Code snippetPORT=5000
+Create a .env file in the backend/ directory:
+PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
-Start the backend API server:Bashnpm run dev
+
+Start the backend API server:
+npm run dev
 # Server listening on http://localhost:5000
-3. Frontend SetupBashcd ../frontend
+
+Frontend Setup
+cd ../frontend
 npm install
-Create a .env file in the frontend/ directory (if configuring custom API URL):Code snippetVITE_API_URL=http://localhost:5000/api
-Start the frontend Vite server:Bashnpm run dev
+
+Create a .env file in the frontend/ directory (if configuring custom API URL):
+VITE_API_URL=http://localhost:5000/api
+
+Start the frontend Vite server:
+npm run dev
 # Application running at http://localhost:5173
-📑 Core API EndpointsMethodEndpointDescriptionPOST/api/auth/registerRegister new clinic administrator accountPOST/api/auth/loginAuthenticate and return JWT tokenGET/api/expensesRetrieve all facility procurement ledger recordsPOST/api/expensesRecord a verified clinical expenditureDELETE/api/expenses/:idRemove an expenditure recordGET/api/categoriesFetch all clinical cost-center departmentsPOST/api/categoriesAdd a new clinical cost-center🧪 OCR Demonstration SamplesTo test the automated invoice processing pipeline, navigate to the Record Expense modal and upload sample invoice images containing standardized fields:PURPOSE : Auto-fills the Item TitleDATE : Auto-formats to YYYY-MM-DDGRAND TOTAL : Parsed bottom-up to capture terminal bill totals over line itemsBILL NO : Auto-constructs procurement reference metadata
+
+Method,Endpoint,Description
+POST,/api/auth/register,Register new clinic administrator account
+POST,/api/auth/login,Authenticate and return JWT token
+GET,/api/expenses,Retrieve all facility procurement ledger records
+POST,/api/expenses,Record a verified clinical expenditure
+DELETE,/api/expenses/:id,Remove an expenditure record
+GET,/api/categories,Fetch all clinical cost-center departments
+POST,/api/categories,Add a new clinical cost-center
+
+🧪 OCR Demonstration Samples
+To test the automated invoice processing pipeline, navigate to the Record Expense modal and upload sample invoice images containing standardized fields:
+
+PURPOSE : Auto-fills the Item Title
+
+DATE : Auto-formats to YYYY-MM-DD
+
+GRAND TOTAL : Parsed bottom-up to capture terminal bill totals over line items
+
+BILL NO : Auto-constructs procurement reference metadata
